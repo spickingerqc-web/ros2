@@ -23,21 +23,21 @@ int main(int argc, char * argv[])
 
         switch(a)
         {
-            case 'f':                                                   // 전진
+            case 'f':                          // 전진
                 message.linear.x =3.0;
-                RCLCPP_INFO(node->get_logger(), "Publish: f 누름");
                 break;
-            case 'b':                                                   // 후진
+            case 'b':                          // 후진
                 message.linear.x =-3.0;
                 break;
-            case 'l':                                                  // 왼쪽을 돔
+            case 'l':                          // 왼쪽으로 돔
                 message.angular.z =3.0;
                 break;
-            case 'r':
-                message.angular.z =-3.0;                                // 오른쪽으로 돔
+            case 'r':                          // 오른쪽으로 돔
+                message.angular.z =-3.0;
                 break;
         }
         if((a=='f')||(a=='b')||(a=='l')||(a=='r')){
+            RCLCPP_INFO(node->get_logger(), "Publish: %c 키 누름", a);
             mypub->publish(message);
         }
         a = '0';
