@@ -23,18 +23,18 @@ int main(int argc, char * argv[])
 
         switch(a)
         {
-            case 'f':
+            case 'f':                                                   // 전진
                 message.linear.x =3.0;
                 RCLCPP_INFO(node->get_logger(), "Publish: f 누름");
                 break;
-            case 'b':
+            case 'b':                                                   // 후진
                 message.linear.x =-3.0;
                 break;
-            case 'l':
+            case 'l':                                                  // 왼쪽을 돔
                 message.angular.z =3.0;
                 break;
             case 'r':
-                message.angular.z =-3.0;
+                message.angular.z =-3.0;                                // 오른쪽으로 돔
                 break;
         }
         if((a=='f')||(a=='b')||(a=='l')||(a=='r')){
