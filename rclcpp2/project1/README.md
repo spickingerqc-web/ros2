@@ -8,4 +8,5 @@
 
 <img width="1275" height="422" alt="image" src="https://github.com/user-attachments/assets/2afaebb3-40b4-4994-b559-50918633427f" />
 
-HZ: 
+HZ: 9.993
+주기 0.0993
