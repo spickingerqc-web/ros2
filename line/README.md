@@ -144,6 +144,32 @@ CamPubNode::CamPubNode(
         std::bind(&CamPubNode::publish_frame, this));
 }
 ```
-이 생성자는 node name, topic name, video source 를 인자로 받아 ROS2 node 를 초기화한다.
+- 이 생성자는 node name, topic name, video source 를 인자로 받아 ROS2 node 를 초기화한다.
 QoS 설정을 구성한 뒤 압축 이미지 publisher 를 생성하고, VideoCapture 로 video source 를 연다.
 video source 를 열지 못하면 error 로그를 출력하고 예외를 던지며, 약 30 FPS(33ms 간격)로 publish_frame() 을 호출하는 타이머를 만든다.
+
+```cpp
+void CamPubNode::publish_frame()
+{
+    cap_ >> frame_;
+    if (frame_.empty()) {
+        RCLCPP_ERROR(this->get_logger(), "Frame empty (video end or read error)");
+        rclcpp::shutdown();
+        return;
+    }
+
+    // 헤더 생성 (타임스탬프)
+    std_msgs::msg::Header header;
+    header.stamp = this->now();
+
+    // OpenCV Mat → CompressedImage 메시지로 변환 (bgr8 → 압축)
+    auto msg = cv_bridge::CvImage(header, "bgr8", frame_).toCompressedImageMsg();
+
+    // publish
+    publisher_->publish(*msg);
+    // RCLCPP_INFO(this->get_logger(), "Published compressed frame");
+}
+```
+- 이 함수는 VideoCapture 에서 한 프레임을 읽어와 frame_ 에 저장하고, 프레임이 비어 있으면 error 로그를 남기고 node 를 종료한다.
+정상적으로 프레임을 읽어온 경우 현재 시간을 기준으로 header 를 생성하고, cv_bridge 를 사용해 OpenCV Mat 을 CompressedImage 메시지로 변환한다.
+마지막으로 publisher_ 를 통해 변환된 이미지를 지정된 topic 으로 publish 하는 역할을 한다.
