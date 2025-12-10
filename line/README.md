@@ -45,10 +45,15 @@ CamPubNode(
     const std::string & node_name   = "campub_7",
     const std::string & topic_name  = "image/compressed_7",
     const std::string & video_source = "/home/linux/simulation/7_lt_ccw_100rpm_in.mp4");
-);
 ```
-이 생성자는 세 개의 문자열 인자를 받으며, 인자를 생략하면 각각 기본값을 사용한다.
-node_name 은 이 publisher node 가 ROS2에서 사용할 노드 이름(Node name)이고 기본값은 campub_7 이다.
-topic_name 은 압축 이미지를 publish 할 토픽 이름(Topic name)이고 기본값은 image/compressed_7 이다.
-video_source 는 OpenCV VideoCapture 가 여는 영상 소스 경로(Video source path)이고 기본값은 /home/linux/simulation/7_lt_ccw_100rpm_in.mp4 이다.
-따라서 CamPubNode() 처럼 인자 없이 호출하면 위 기본 설정(Node name, Topic name, Video source)이 그대로 자동 적용된다.
+node_name (기본값: campub_7)
+ROS2에서 사용할 node 이름(Node name)입니다.
+
+topic_name (기본값: image/compressed_7)
+압축 이미지를 publish 할 topic 이름(Topic name)입니다.
+
+video_source (기본값: /home/linux/simulation/7_lt_ccw_100rpm_in.mp4)
+OpenCV VideoCapture 가 여는 video source path 입니다.
+
+CamPubNode() 처럼 인자 없이 호출하면
+위 기본값(Node name, Topic name, Video source)이 그대로 자동 적용됩니다.
