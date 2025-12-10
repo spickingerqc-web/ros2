@@ -60,3 +60,4 @@ CamSubNode::CamSubNode() : Node("camsub_wsl")
     namedWindow("Binary with Bounding Box", WINDOW_AUTOSIZE);
 }
 ```
+- 이 생성자는 노드 이름을 "camsub_wsl"로 설정하고, image/compressed_7 토픽을 best-effort QoS로 구독하는 subscription_을 만든 뒤, 원본·그레이스케일·이진화 결과를 확인하기 위한 세 개의 OpenCV 디버그 창을 미리 생성하는 역할을 한다.
