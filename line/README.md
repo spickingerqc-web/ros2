@@ -1,5 +1,7 @@
 # Line tracer
 
+## 작성자: 정진용
+
 ## youtube
 
 ## 5 lt cw 100rpm out line tracer
