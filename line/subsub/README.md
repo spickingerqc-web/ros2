@@ -39,7 +39,7 @@ private:
 - mysub_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg)  
   수신된 압축 이미지 메시지를 디코딩해 라인 검출과 에러 계산 및 화면 표시를 수행하는 콜백 함수이다.
 
-- subscription_
+- subscription_  
   지정된 토픽에서 sensor_msgs::msg::CompressedImage 메시지를 구독하여 mysub_callback()으로 전달하는 ROS2 구독 객체이다.
 
 
