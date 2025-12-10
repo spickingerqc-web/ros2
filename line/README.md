@@ -45,3 +45,25 @@ CamPubNode(
     const std::string & node_name   = "campub_7",
     const std::string & topic_name  = "image/compressed_7",
     const std::string & video_source = "/home/linux/simulation/7_lt_ccw_100rpm_in.mp4");
+);
+node_name (기본값: "campub_7")
+이 publisher node 가 ROS2에서 사용할 노드 이름(Node name) 입니다.
+→ 인자를 생략하면 node name 은 campub_7 으로 생성됩니다.
+
+topic_name (기본값: "image/compressed_7")
+이 node 가 압축 이미지를 publish(전송) 할 토픽 이름(Topic name) 입니다.
+→ 기본적으로 image/compressed_7 토픽에 sensor_msgs::msg::CompressedImage 메시지를 publish 합니다.
+
+video_source (기본값: "/home/linux/simulation/7_lt_ccw_100rpm_in.mp4")
+OpenCV VideoCapture 가 열어서 사용할 영상 소스 경로(Video source path) 입니다.
+→ 기본값은 7_lt_ccw_100rpm_in 시뮬레이션 영상 파일입니다.
+
+CamPubNode() 를 인자 없이 사용할 경우 기본 설정
+
+Node name: campub_7
+
+Topic name: image/compressed_7
+
+Video source: /home/linux/simulation/7_lt_ccw_100rpm_in.mp4
+로 자동 설정됩니다.
+
