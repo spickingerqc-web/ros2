@@ -74,24 +74,24 @@ private:
 };
 ```
 
-- publish_frame()
+- publish_frame()  
   타이머 주기로 호출되어 한 프레임을 읽어와 토픽으로 이미지를 publish 하는 함수이다.
 
-- publisher_
+- publisher_  
   sensor_msgs::msg::CompressedImage 메시지를 지정된 토픽으로 publish 하는 ROS2 publisher 이다.
 
-- timer_
+- timer_  
   일정 주기로 publish_frame() 함수를 호출하도록 스케줄링 하는 타이머이다.
 
-- qos_profile_
+- qos_profile_  
   publisher 에 사용될 QoS 설정 정보를 저장하는 멤버이다.
 
-- cap_
+- cap_  
   영상 파일 또는 카메라로부터 프레임을 읽어오는 OpenCV VideoCapture 객체이다.
 
-- frame_
+- frame_  
   현재 읽어온 한 프레임 이미지를 담는 cv::Mat 버퍼이다.
 
-- video_source_
+- video_source_  
   사용할 영상 소스의 경로 또는 파이프라인 문자열을 저장하는 멤버이다.
 
