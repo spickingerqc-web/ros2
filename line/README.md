@@ -47,7 +47,8 @@ CamPubNode(
     const std::string & video_source = "/home/linux/simulation/7_lt_ccw_100rpm_in.mp4");
 ```
 - node_name (기본값: campub_7)
-ROS2에서 사용할 node 이름(Node name)입니다.
+ ROS2에서 사용할 node 이름(Node name)입니다.
+
 
 - topic_name (기본값: image/compressed_7)
 압축 이미지를 publish 할 topic 이름(Topic name)입니다.
