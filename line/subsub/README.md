@@ -42,4 +42,21 @@ private:
 - subscription_  
   지정된 토픽에서 sensor_msgs::msg::CompressedImage 메시지를 구독하여 mysub_callback()으로 전달하는 ROS2 구독 객체이다.
 
+### cam_pub_node.cpp
 
+#### 1. CamPubNode 생성자
+
+```cpp
+CamSubNode::CamSubNode() : Node("camsub_wsl")
+{
+    auto qos_profile = rclcpp::QoS(rclcpp::KeepLast(10)).best_effort();
+
+    subscription_ = this->create_subscription<sensor_msgs::msg::CompressedImage>(
+        "image/compressed_7", qos_profile, bind(&CamSubNode::mysub_callback, this, _1));
+
+
+    namedWindow("Original", WINDOW_AUTOSIZE);
+    namedWindow("Grayscale", WINDOW_AUTOSIZE);
+    namedWindow("Binary with Bounding Box", WINDOW_AUTOSIZE);
+}
+```
