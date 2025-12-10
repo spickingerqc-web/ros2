@@ -30,7 +30,7 @@
 
 ---
 
-### pub.hpp
+### cam_pub_node.hpp
 
 **파일 역할 (Role)**  
 - `CamPubNode` 클래스를 선언하는 헤더 파일  
