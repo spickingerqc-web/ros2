@@ -19,5 +19,6 @@
 [▶ Watch on YouTube](https://www.youtube.com/watch?v=McKT8FgOp5I)
 
 ---
+# 코드 간략 설명
 
 ## pub(퍼블리셔)
