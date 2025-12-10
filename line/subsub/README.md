@@ -1,21 +1,16 @@
 # 코드 간략 설명
 
-## sub (subscribe / vision)
+## sub (subscribe)
 
 라인 트레이서 실험에서 **pub 노드가 퍼블리시한 압축 영상 토픽**을 구독해서,  
 영상 처리(ROI 추출, 이진화, 라인 중심 검출)를 수행하고,  
-결과를 OpenCV 창에 시각화하면서 **라인 중심 위치 에러(error)를 계산**하는 노드입니다. :contentReference[oaicite:0]{index=0}  
-
-아래는 `vision.hpp` / `vision.cpp` 에 대한 간단한 설명입니다.  
+결과를 OpenCV 창에 시각화하면서 **라인 중심 위치 에러(error)를 계산**하는 노드입니다.  
 
 ---
 
-## 1. vision.hpp
-
-> 코드 전문은 생략하고, 역할 중심으로만 정리한 섹션입니다.
+### vision.hpp
 
 ### 파일 역할 (Role)
-
 - `CamSubNode` 클래스를 선언하는 **헤더 파일**  
 - `sensor_msgs::msg::CompressedImage` 타입 토픽을 **구독(subscribe)** 하는 ROS2 노드 인터페이스 정의
 - 콜백 함수 `mysub_callback()` 에서:
@@ -26,15 +21,25 @@
 
 ---
 
-## 2. vision.cpp
-
 ```cpp
-#include "subsub/vision.hpp"
-#include <sys/time.h>
-#include <unistd.h>
-
-bool ctrl_c_pressed = false;
-void ctrlc(int)
+class CamSubNode : public rclcpp::Node
 {
-    ctrl_c_pressed = true;
-}
+public:
+    CamSubNode();
+    ~CamSubNode();
+
+private:
+    void mysub_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
+    rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
+};
+```
+- CamSubNode()  
+  압축 이미지 토픽 구독 설정과 OpenCV 디버그 창 생성을 포함해 subscriber node를 초기화하는 기본 생성자이다.
+
+- mysub_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg)  
+  수신된 압축 이미지 메시지를 디코딩해 라인 검출과 에러 계산 및 화면 표시를 수행하는 콜백 함수이다.
+
+- subscription_
+  지정된 토픽에서 sensor_msgs::msg::CompressedImage 메시지를 구독하여 mysub_callback()으로 전달하는 ROS2 구독 객체이다.
+
+
